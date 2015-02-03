@@ -47,12 +47,14 @@ public class TopFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                //Display hint dialog
-                DialogFragment hint = new Hint();
-                hint.show(getActivity().getFragmentManager(), "hint");
-                Log.e("Hint Dialog", "hint");
                 if(!((MainActivity)getActivity()).isPaused) {
-                    ((MainActivity) getActivity()).isPaused = !((MainActivity) getActivity()).isPaused;
+                    //Pause game
+                    ((MainActivity)getActivity()).isPaused = true;
+
+                    //Display hint dialog
+                    DialogFragment hint = new Hint();
+                    hint.show(getActivity().getFragmentManager(), "hint");
+                    Log.e("Hint Dialog", "hint");
                 }
             }
         });
@@ -62,29 +64,33 @@ public class TopFragment extends Fragment {
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).isPaused = !((MainActivity)getActivity()).isPaused;
-                final TextView tapstart = (TextView) getActivity().findViewById(R.id.tapStart);
-                Log.e("TAPSTART: ",tapstart.toString());
-                if(((MainActivity)getActivity()).isPaused) {
-                    (getActivity()).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tapstart.setText("PAUSED");
-                        }
-                    });
-                    ((MainActivity) getActivity()).song.pause();
-
-                }else{
-                    (getActivity()).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tapstart.setText("");
-                        }
-                    });
-                    ((MainActivity) getActivity()).song.start();
-                }
+                pause();
             }
         });
+    }
+
+    public void pause(){
+        ((MainActivity)getActivity()).isPaused = !((MainActivity)getActivity()).isPaused;
+        final TextView tapstart = (TextView) getActivity().findViewById(R.id.tapStart);
+        Log.e("TAPSTART: ",tapstart.toString());
+        if(((MainActivity)getActivity()).isPaused) {
+            (getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tapstart.setText("PAUSED");
+                }
+            });
+            ((MainActivity) getActivity()).song.pause();
+
+        }else{
+            (getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tapstart.setText("");
+                }
+            });
+            ((MainActivity) getActivity()).song.start();
+        }
     }
 
     @Override
@@ -102,8 +108,8 @@ public class TopFragment extends Fragment {
             builder.setMessage(R.string.hint)
                     .setNegativeButton("Got it!", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            // dismiss dialog
-                            ((MainActivity)getActivity()).isPaused = !((MainActivity)getActivity()).isPaused;
+                            // dismiss dialog and resume game
+                            ((MainActivity)getActivity()).isPaused = false;
                         }
                     });
             // Create the AlertDialog object and return it

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -47,7 +46,12 @@ public class MainActivity extends FragmentActivity {
         editor.putInt("highScore", canvasView.gameController.highScore);
         editor.commit();
 
-        isPaused = true;
+        TopFragment topFragment = (TopFragment) this.getSupportFragmentManager().findFragmentById(R.id.top_fragment);
+        //if not paused, pause the game
+        if(!this.isPaused) {
+            topFragment.pause();
+        }
+
         song.stop();
         song.release();
         bite.release();
