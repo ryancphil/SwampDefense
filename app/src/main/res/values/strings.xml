@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Swamp Defense</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hint">Use your finger to move Albert up and down. He will chomp mascots automatically when in range.\n\n
+        CHOMP: Chomps mascots with extended range.\n\n
+        GROWL: Slows down mascots.\n\n
+        ALBERTA: Ten chomps with Alberta by your side.\n\n
+        TEBOW: Blocks ten mascots.\n\n
+        It\'s been said Crab Legs will help deter Seminoles.</string>
+
+</resources>

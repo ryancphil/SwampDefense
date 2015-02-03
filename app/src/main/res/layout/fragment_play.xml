@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tapStart"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="Tap to start!"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+    <com.supafly.swampdefense.CanvasView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/canvasView"/>
+    
+
+
+</RelativeLayout>
